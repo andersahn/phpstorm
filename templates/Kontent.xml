@@ -1,0 +1,152 @@
+<templateSet group="Kontent">
+  <template name="kntcontroller" value="/**&#10; * $controllerDescription$&#10; *&#10; * @author $author$&#10; * @since $date$&#10; */&#10;class $controllerName$Controller extends Kontent_Controller_Template&#10;{&#10;    public function initParameterMaps()&#10;    {&#10;        // add parameter maps here&#10;    }&#10;    &#10;    public function init()&#10;    {&#10;        parent::init();&#10;    }&#10;    &#10;    public function preDispatch()&#10;    {&#10;        parent::preDispatch();&#10;        &#10;        // add things that should be initialized at every request here&#10;    }&#10;    &#10;    public function indexAction()&#10;    {&#10;        $END$&#10;    }&#10;}" description="Kontent controller" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="controllerDescription" expression="&quot;Class description&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="author" expression="user()" defaultValue="" alwaysStopAt="false" />
+    <variable name="date" expression="date()" defaultValue="" alwaysStopAt="false" />
+    <variable name="controllerName" expression="&quot;name&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntdbdelete" value="$db = Zend_Registry::get('Db');&#10;$db-&gt;delete('$tablename$', array(&#10;    '$tableIdClause$ = ?' =&gt; $idVariable$,&#10;    $END$&#10;));" description="Using a custom delete on a table" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="tablename" expression="&quot;tableName&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="tableIdClause" expression="&quot;tableIdClause&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="idVariable" expression="&quot;idVariable&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntfs" value="$this-&gt;_addFieldset(&#10;    '$name$',&#10;    array(&#10;        '$END$',&#10;    ),&#10;    Kontent_Fieldset::PLACEMENT_LEFT&#10;);" description="initAdmin: _addFieldset - left placement" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="name" expression="&quot;name&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntfieldset" value="/**&#10; * $description$ &#10; *&#10; * @author $user$&#10; * @since $date$&#10; */&#10;class $modelName$Fieldset extends Kontent_Fieldset&#10;{&#10;    /**&#10;     * (non-PHPdoc)&#10;     * @see Kontent_Fieldset::save()&#10;     */&#10;    public function save($data = null, $transaction = true)&#10;    {&#10;        $END$&#10;    &#10;        // do overrides after the save&#10;        return parent::save($data, $transaction);&#10;    }&#10;}" description="Create a new fieldset class" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="description" expression="&quot;Class description&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="user" expression="user()" defaultValue="" alwaysStopAt="false" />
+    <variable name="date" expression="date()" defaultValue="" alwaysStopAt="false" />
+    <variable name="modelName" expression="&quot;name&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntformf" value="$this-&gt;addElement('$fieldtype$', '$fieldname$', array(&#10;    'label' =&gt; $this-&gt;getView()-&gt;translate('$labeltext$', '$translationarea$'),&#10;    'required' =&gt; $false$,&#10;    'filters' =&gt; array(&#10;        'StringTrim'&#10;    ),&#10;    'attribs' =&gt; array(&#10;        'placeholder' =&gt; $this-&gt;getView()-&gt;translate('$placeholderText$', '$translationarea$'),&#10;    )&#10;));&#10;&#10;$END$" description="Add a single form field" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="fieldtype" expression="&quot;fieldType&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="fieldname" expression="&quot;fieldName&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="labeltext" expression="&quot;labelText&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="translationarea" expression="&quot;translationArea&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="false" expression="&quot;false&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="placeholderText" expression="&quot;placeholderText&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntform" value="/**&#10; * $description$&#10; *&#10; * @author $user$&#10; * @since $date$&#10; */&#10;class $formName$ extends Zend_Form&#10;{&#10;    public function init()&#10;    {&#10;        // creates the form elements&#10;        $this-&gt;addElement('$fieldType$', '$fieldName$', array(&#10;            'label' =&gt; $this-&gt;getView()-&gt;translate('$labeltext$', '$translationArea$'),&#10;            'required' =&gt; $false$,&#10;            'filters' =&gt; array(&#10;                'StringTrim'&#10;            ),&#10;            'attribs' =&gt; array(&#10;                'placeholder' =&gt; $this-&gt;getView()-&gt;translate('$placeholderText$', '$translationArea$'),&#10;            )&#10;        ));&#10;        &#10;        $END$&#10;        &#10;        // adds the element decorators&#10;        $this-&gt;setElementDecorators(array(&#10;            'ViewHelper',&#10;        ));&#10;        &#10;        // checkbox decorator handling&#10;        /*$this-&gt;setElementDecorators(array(&#10;            'ViewHelper',&#10;            array('Label', array('escape' =&gt; false, 'placement' =&gt; 'append')),&#10;            array('HtmlTag', array('tag' =&gt; 'div', 'class' =&gt; 'checkboxxx'))&#10;        ), array(&#10;            // checkbox fields here&#10;        ));*/&#10;        &#10;        // a required view decorator&#10;        /*$requiredDecorator = new RequiredDecorator();&#10;        $this-&gt;setElementDecorators(array(&#10;            'ViewHelper' =&gt; $requiredDecorator,&#10;        ), array(&#10;            // add fields here&#10;        ));*/&#10;    }&#10;}" description="Create new kontent form" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="description" expression="&quot;Class description&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="user" expression="user()" defaultValue="" alwaysStopAt="false" />
+    <variable name="date" expression="date()" defaultValue="" alwaysStopAt="false" />
+    <variable name="formName" expression="&quot;name&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="fieldType" expression="&quot;fieldType&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="fieldName" expression="&quot;fieldName&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="labeltext" expression="&quot;labelText&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="translationArea" expression="&quot;translationArea&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="false" expression="&quot;false&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="placeholderText" expression="&quot;placeholderText&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntf" value="$field = new Kontent_Field_$class$;&#10;$field-&gt;setAdminName('$adminName$');&#10;$field-&gt;setTranslatable($true$);&#10;$this-&gt;addField($field);&#10;&#10;$END$" description="Kontent field fast typing" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="class" expression="&quot;class&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="adminName" expression="&quot;adminName&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="true" expression="&quot;true&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntdbselect" value="// initializes the db object &amp; set fetch mode&#10;/**&#10; * @var Zend_Db_Adapter_Abstract $db&#10; */&#10;$db = Zend_Registry::get('Db');&#10;$db-&gt;setFetchMode(Zend_Db::FETCH_OBJ);&#10;&#10;// creates the custom selet&#10;$select = $db-&gt;select();&#10;$select-&gt;from($modelName$::TABLE, array('$tablefields$'));&#10;&#10;// adds inner joins&#10;/*&#10;$select-&gt;joinInner(&#10;    array('$joiningTableAlias$' =&gt; '$joiningTable$'), &#10;    '$joiningTableAlias$.$parentTableId$ = $parentId$', &#10;    array('$joiningTableFields$')&#10;);&#10;*/&#10;&#10;// adds a where clause (copy this to add more!)&#10;$select-&gt;where('published = ?', 1);&#10;            &#10;// executes the select&#10;$rows = $db-&gt;fetchAll($select);&#10;&#10;foreach ($rows as $row) {&#10;    // use row data here&#10;    $END$&#10;}" description="Do a custom select on the database" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="modelName" expression="&quot;modelName&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="tablefields" expression="&quot;tableFields&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="joiningTableAlias" expression="&quot;joiningTableAlias&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="joiningTable" expression="&quot;joiningTable&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="parentTableId" expression="&quot;parentTableId&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="parentId" expression="&quot;parentId&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="joiningTableFields" expression="&quot;joiningTableFields&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntdbinsert" value="$db = Zend_Registry::get('Db');&#10;$db-&gt;insert('$tablename$', array(&#10;    '$column1$' =&gt; $value1$,&#10;    $END$&#10;));" description="Using a custom insert on a table" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="tablename" expression="&quot;tableName&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="column1" expression="&quot;column1&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="value1" expression="&quot;value1&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntinit" value="public function init()&#10;{&#10;    $this-&gt;_setTableName('$tablename$');&#10;    $this-&gt;_setTemplate('$templatename$');&#10;    $this-&gt;_setIsPage($boolean1$);&#10;    $this-&gt;_setTemplateBound($boolean2$);&#10;    $this-&gt;_setIsSection($boolean3$);&#10;    $this-&gt;_setIdColumn('$idcolumn$');&#10;    $this-&gt;_setSortableList($boolean4$);&#10;    &#10;    $END$&#10;}" description="Model init method" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="tablename" expression="&quot;tableName&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="templatename" expression="&quot;templateName&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="boolean1" expression="&quot;boolean1&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="boolean2" expression="&quot;boolean2&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="boolean3" expression="&quot;boolean2&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="idcolumn" expression="&quot;idColumn&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="boolean4" expression="&quot;boolean4&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntfsr" value="$this-&gt;_addFieldset(&#10;    '$name$',&#10;    array(&#10;        '$END$',&#10;    ),&#10;    Kontent_Fieldset::PLACEMENT_RIGHT&#10;);" description="initAdmin: _addFieldset - right placement" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="name" expression="&quot;name&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntinitadm" value="public function initAdmin()&#10;{&#10;    $this-&gt;_setListFields(array(&#10;        '$fields$',&#10;    ));&#10;    &#10;    $END$&#10;}" description="initAdmin method" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="fields" expression="&quot;fields&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntmodel" value="/**&#10; *&#10; * @author $user$&#10; * @since $date$&#10; */&#10;class $modelname$ extends Kontent_Db_Model&#10;{&#10;&#10;    const TABLE = '$tableName$';&#10;    &#10;    public function init()&#10;    {&#10;        $this-&gt;_setTableName(self::TABLE);&#10;        $this-&gt;_setTemplate('$templatename$');&#10;        $this-&gt;_setIsPage($boolean1$);&#10;        $this-&gt;_setTemplateBound($boolean2$);&#10;        $this-&gt;_setIsSection($boolean3$);&#10;        $this-&gt;_setIdColumn('$idcolumn$');&#10;        $this-&gt;_setIsSortable($boolean4$);&#10;        &#10;        $END$&#10;    }&#10;    &#10;    public function initAdmin()&#10;    {&#10;        $this-&gt;_setListFields(array(&#10;            // add the listing fields here&#10;        ));&#10;    }&#10;}" description="Create a new model" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="user" expression="user()" defaultValue="" alwaysStopAt="false" />
+    <variable name="date" expression="date()" defaultValue="" alwaysStopAt="false" />
+    <variable name="modelname" expression="&quot;modelName&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="tableName" expression="&quot;tableName&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="templatename" expression="&quot;templateName&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="boolean1" expression="&quot;boolean1&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="boolean2" expression="&quot;boolean2&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="boolean3" expression="&quot;boolean3&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="idcolumn" expression="&quot;idColumn&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="boolean4" expression="&quot;boolean4&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntfsf" value="$this-&gt;_addFieldset(&#10;    '$name$',&#10;    array(&#10;        '$END$',&#10;    ),&#10;    Kontent_Fieldset::PLACEMENT_FULL&#10;);" description="initAdmin: _addFieldset - full placement" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="name" expression="&quot;name&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntp" value="$this-&gt;_addParameterMap(&#10;    '$path$',&#10;    array(&#10;        1 =&gt; '$parameter$'&#10;    ),&#10;    array(&#10;        'action' =&gt; '$actionName$'&#10;    )&#10;);&#10;&#10;$END$" description="Kontent parameter map" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="path" expression="&quot;path&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="parameter" expression="&quot;parameter&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="actionName" expression="&quot;actionName&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="kntref" value="$reference = new Kontent_ReferenceMap('$accessor$', '$accessorId$', '$classname$', '$classId$');&#10;$reference-&gt;setAdminName('$adminname$');&#10;$reference-&gt;setIsManyToMany($false$);&#10;$reference-&gt;setIsSortableList(false);&#10;$this-&gt;_addReferenceMap($reference);&#10;&#10;$END$" description="Kontent reference map" toReformat="false" toShortenFQNames="true" deactivated="true">
+    <variable name="accessor" expression="&quot;accessor&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="accessorId" expression="&quot;accessorId&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="classname" expression="&quot;className&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="classId" expression="&quot;classId&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="adminname" expression="&quot;adminName&quot;" defaultValue="" alwaysStopAt="true" />
+    <variable name="false" expression="&quot;boolean&quot;" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+</templateSet>
